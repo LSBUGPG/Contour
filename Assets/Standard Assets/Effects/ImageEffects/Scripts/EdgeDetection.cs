@@ -6,7 +6,7 @@ namespace UnityStandardAssets.ImageEffects
     [ExecuteInEditMode]
     [RequireComponent (typeof (Camera))]
     [AddComponentMenu ("Image Effects/Edge Detection/Edge Detection")]
-    public class EdgeDetection : PostEffectsBase
+    public class EdgeDetection : MonoBehaviour
     {
         public enum EdgeDetectMode
         {
@@ -32,19 +32,20 @@ namespace UnityStandardAssets.ImageEffects
         private EdgeDetectMode oldMode = EdgeDetectMode.SobelDepthThin;
 
 
-        public override bool CheckResources ()
+        public bool CheckResources ()
 		{
-            CheckSupport (true);
+            edgeDetectMaterial = new Material (edgeDetectShader);
+            if (edgeDetectMaterial)
+            {
+                edgeDetectMaterial.hideFlags = HideFlags.DontSave;
+            }
 
-            edgeDetectMaterial = CheckShaderAndCreateMaterial (edgeDetectShader,edgeDetectMaterial);
             if (mode != oldMode)
                 SetCameraFlag ();
 
             oldMode = mode;
 
-            if (!isSupported)
-                ReportAutoDisable ();
-            return isSupported;
+            return true;
         }
 
 
