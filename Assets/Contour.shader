@@ -2,6 +2,7 @@
 {
     Properties
     {
+		_StripeWidth ("Stripe Width", Float) = 20
     }
     SubShader
     {
@@ -28,7 +29,7 @@
                 float4 worldPosition : TEXCOORD1;
             };
 
-            sampler2D _MainTex;
+            float _StripeWidth;
 
             v2f vert (appdata v)
             {
@@ -43,8 +44,7 @@
             
             fixed4 frag (v2f i) : SV_Target
             {
-                // sample the texture
-                fixed4 col = fixed4(1.0, 1.0, 1.0, 1.0) * step(0.5, frac(i.worldPosition.y * 20.0));
+                fixed4 col = fixed4(1.0, 1.0, 1.0, 1.0) * step(0.5, frac(i.worldPosition.y * _StripeWidth));
                 return col;
             }
             ENDCG

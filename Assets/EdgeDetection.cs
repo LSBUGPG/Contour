@@ -5,7 +5,6 @@ namespace UnityStandardAssets.ImageEffects
 {
     [ExecuteInEditMode]
     [RequireComponent (typeof (Camera))]
-    [AddComponentMenu ("Image Effects/Edge Detection/Edge Detection")]
     public class EdgeDetection : MonoBehaviour
     {
         public enum EdgeDetectMode
@@ -84,7 +83,7 @@ namespace UnityStandardAssets.ImageEffects
             edgeDetectMaterial.SetFloat ("_Exponent", edgeExp);
             edgeDetectMaterial.SetFloat ("_Threshold", lumThreshold);
 
-            Graphics.Blit (source, destination, edgeDetectMaterial, (int) mode);
+            Graphics.Blit (source, destination, edgeDetectMaterial, (int) 0);
         }
     }
 }
