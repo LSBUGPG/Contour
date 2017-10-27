@@ -23,11 +23,9 @@ Shader "Hidden/EdgeDetect" {
 	sampler2D _CameraDepthNormalsTexture;
 	sampler2D_float _CameraDepthTexture;
 
-	uniform half4 _Sensitivity; 
 	uniform half4 _BgColor;
 	uniform half _BgFade;
 	uniform half _SampleDistance;
-	uniform float _Exponent;
 
 	uniform float _Threshold;
 
